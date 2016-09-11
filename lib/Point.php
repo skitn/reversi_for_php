@@ -1,5 +1,7 @@
 <?php
 
+namespace Reversi;
+
 class Point
 {
     private $x;

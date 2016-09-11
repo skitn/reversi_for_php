@@ -1,6 +1,8 @@
 <?php
 
-require_once './Point.php';
+namespace Reversi;
+
+use Reversi\Point;
 
 class Disc extends Point
 {

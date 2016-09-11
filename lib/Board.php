@@ -1,8 +1,10 @@
 <?php
 
-require_once "./Point.php";
-require_once "./Disc.php";
-require_once "./ColorStorage.php";
+namespace Reversi;
+
+use Reversi\Point;
+use Reversi\Disc;
+use Reversi\ColorStorage;
 
 class Board
 {
@@ -397,6 +399,3 @@ class Board
         $this->initMovable();
     }
 }
-
-$board = new Board();
-print_r($board);

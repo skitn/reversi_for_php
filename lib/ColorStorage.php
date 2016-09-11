@@ -1,5 +1,7 @@
 <?php
 
+namespace Reversi;
+
 class ColorStorage
 {
     private $data = [];
