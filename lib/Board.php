@@ -398,4 +398,38 @@ class Board
 
         $this->initMovable();
     }
+
+    public function countDisc($color)
+    {
+        return $this->discs->get($color);
+    }
+
+    public function getColor(Point $p)
+    {
+        return $this->raw_board[$p->getX()][$p->getY()];
+    }
+
+    public function getMovablePos()
+    {
+        return $this->movable_pos[$this->turns];
+    }
+
+    public function getUpdate()
+    {
+        if (count($this->update_log) == 0) {
+            return [];
+        }
+        $update_log = $this->update_log;
+        return array_pop($update_log);
+    }
+
+    public function getCurrentColor()
+    {
+        return $this->current_color;
+    }
+
+    public function getTurns()
+    {
+        return $this->turns;
+    }
 }
