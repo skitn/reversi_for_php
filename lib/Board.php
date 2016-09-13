@@ -41,9 +41,9 @@ class Board
 
     public function __construct()
     {
-        $raw_board = array_fill(0, self::BOARD_SIZE + 2, 0);
+        $raw_board = array_fill(1, self::BOARD_SIZE + 2, 0);
         foreach ($raw_board as &$board) {
-            $board = array_fill(0, self::BOARD_SIZE + 2, 0);
+            $board = array_fill(1, self::BOARD_SIZE + 2, 0);
         }
         $this->raw_board = $raw_board;
         $this->discs = new ColorStorage();
