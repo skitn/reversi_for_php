@@ -151,13 +151,12 @@ class Board
 
     public function move(Point $point)
     {
-        if ($point->getX() < 0 || $point->getX() >= self::BOARD_SIZE) {
+        if ($point->getX() <= 0 || $point->getX() > self::BOARD_SIZE) {
             return false;
         }
-        if ($point->getY() < 0 || $point->getY() >= self::BOARD_SIZE) {
+        if ($point->getY() <= 0 || $point->getY() > self::BOARD_SIZE) {
             return false;
         }
-
         if ($this->movable_dir[$this->turns][$point->getX()][$point->getY()] == self::NONE) {
             return false;
         }
@@ -176,8 +175,8 @@ class Board
     {
         $this->movable_pos[$this->turns] = null;
         
-        for ($y = 0; $y < self::BOARD_SIZE; $y++) {
-            for ($x = 0; $x < self::BOARD_SIZE; $x++) {
+        for ($y = 1; $y <= self::BOARD_SIZE; $y++) {
+            for ($x = 1; $x <= self::BOARD_SIZE; $x++) {
                 $disc = new Disc($x, $y, $this->current_color);
                 $dir = $this->checkMobility($disc);
                 if ($dir != self::NONE) {
@@ -194,7 +193,8 @@ class Board
 
         $update = [];
 
-        $raw_board[$point->getX()][$point->getY()] = $this->current_color;
+        $this->raw_board[$point->getX()][$point->getY()] = $this->current_color;
+
         $update[] = new Disc($point->getX(), $point->getY(), $this->current_color);
 
         // 上

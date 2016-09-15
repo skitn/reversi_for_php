@@ -10,7 +10,7 @@ class ConsoleBoard extends Board
 {
     public function display()
     {
-        echo "  a b c d e f g h  \n";
+        echo "  a b c d e f  \n";
         for ($y = 1; $y <= parent::BOARD_SIZE; $y++) {
             echo "  " + $y;
             for ($x = 1; $x <= parent::BOARD_SIZE; $x++) {
