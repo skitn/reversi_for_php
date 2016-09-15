@@ -8,10 +8,7 @@ use Reversi\Disc;
 $board = new ConsoleBoard();
 
 while (true) {
-    $board->display();
-    echo "black:" . $board->countDisc(Disc::COLOR_BLACK) . " ";
-    echo "white:" . $board->countDisc(Disc::COLOR_WHITE) . " ";
-    echo "empty:" . $board->countDisc(Disc::COLOR_EMPTY) . "\n\n";
+    displayCurrentBoard($board);
     echo "手を入力してくだされ:";
 
     $coord = trim(fgets(STDIN));
@@ -42,6 +39,15 @@ while (true) {
 
     if ($board->isGameOver()) {
         echo "ゲーム終了ーーー\n";
+        displayCurrentBoard($board);
         return;
     }
+}
+
+function displayCurrentBoard(ConsoleBoard $board)
+{
+    $board->display();
+    echo "black:" . $board->countDisc(Disc::COLOR_BLACK) . " ";
+    echo "white:" . $board->countDisc(Disc::COLOR_WHITE) . " ";
+    echo "empty:" . $board->countDisc(Disc::COLOR_EMPTY) . "\n\n";
 }

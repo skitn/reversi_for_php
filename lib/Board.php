@@ -338,13 +338,12 @@ class Board
 
         $this->current_color = -$this->current_color;
 
-        $update = $this->update_log[count($this->update_log) - 1];
-        unset($this->update_log[count($this->update_log) - 1]);
+        $update = array_pop($this->update_log);
 
         if (count($update) == 0) {
             $this->movable_pos[$this->turns] = null;
             for ($x = 1; $x <= self::BOARD_SIZE; $x++) {
-                for ($x = 1; $x <= self::BOARD_SIZE; $x++) {
+                for ($y = 1; $y <= self::BOARD_SIZE; $y++) {
                     $this->movable_dir[$this->turns][$x][$y] = self::NONE;
                 }
             }
@@ -352,8 +351,9 @@ class Board
             $this->turns--;
             $p = $update[0];
             $this->raw_board[$p->getX()][$p->getY()] = Disc::COLOR_EMPTY;
-            foreach($update as $point) {
-                $this->raw_board[$point->getX()][$point->getY()] = -$this->current_color;
+            for ($i = 1; $i < count($update); $i++) {
+                $p = $update[$i];
+                $this->raw_board[$p->getX()][$p->getY()] = -$this->current_color;
             }
 
             $disc_diff = count($update);
@@ -361,6 +361,7 @@ class Board
             $this->discs->set(-$this->current_color, $this->discs->get(-$this->current_color) + ($disc_diff - 1));
             $this->discs->set(Disc::COLOR_EMPTY, $this->discs->get(Disc::COLOR_EMPTY) + 1);
         }
+        return true;
     }
 
     public function init()
